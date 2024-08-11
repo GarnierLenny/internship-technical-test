@@ -25,10 +25,14 @@ function App() {
   const getNewPalette = async () => {
     const data = await fetch('http://colormind.io/api/', {
       method: 'POST',
-      body: JSON.stringify({model: "default"}),
+      body: JSON.stringify({
+        model: "default",
+        input: colors.map((color, index) => locked[index] ? color.split(',').map(value => parseInt(value)) : "N"),
+      }),
     })
     .then(async (data) => await data.json());
 
+    console.log(colors.map((color, index) => locked[index] ? color.split(',').map(value => parseInt(value)) : "N"));
     for (let i = 0; i < 5; i++) {
       setColors((oldColors => {
         const currentColor = `${data.result[i][0]}, ${data.result[i][1]}, ${data.result[i][2]}`;
