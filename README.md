@@ -15,7 +15,7 @@ This project is made as part of my hiring process as a Fullstack intern at [Race
 
 # Part 1: Vanilla
 
-The first step is defining what application I will make, after stumbling upon many APIs I decided to make an application based on the [colormind](http://colormind.io/api-access/) API which provides palettes of matching colors.
+The first step is defining what application I will make, after stumbling upon many APIs I decided to make an application based on the [Colormind API](http://colormind.io/api-access/) which provides palettes of matching colors.
 
 I want the user to be able to generate a palette of colors until he is satisfied, I also want him to be able to copy easily in the clipboard the colors he is interested in. He should also be able to copy the wanted color in hexadecimal or rgb format.
 
@@ -39,4 +39,14 @@ Here's a screenshot of the final result:
 
 - I had some trouble loading static files on the server, at first I did not quite understood at first why it tried to load `script.js` with in the `text/html` as format
 - I struggled a bit in converting rgb to hexadecimal format, for this precise function I assisted myself with [StackOverflow](https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb)
-- I let on purpose a margin of progression in order to add additional features in the next sections
+- I let on purpose a margin of improvement in order to add additional features in the next sections
+
+# Part 2: React
+
+This part is quite straightforward since this time I don't have to code the hosting part of the web application.
+
+The main point here is adding new features, here's what I have in mind:
+
+- User is able to _lock_ a section, meaning that further generating a palette with affect exclusively not locked section
+- Add a _copy to clipboard_ button next to the rgb and hex value
+- User will be able to choose a _palette theme_ provided by the [Colormind API](http://colormind.io/api-access/)
