@@ -5,30 +5,28 @@ const path = require('path');
 const port = process.env.port | 8080;
 const host = 'localhost';
 
-const server = http.createServer((req, res) => {
-  if (req.url.includes('/static')) {
-    fs.readFile(path.join(__dirname, req.url), (err, data) => {
-      if (err) {
-        res.writeHead(500, { 'Content-type': 'text/html' });
-        res.end(`<html><h1>Could not load static file: ${err}</h1></html>`);
-        return;
-      }
-      res.writeHead(200, { 'Content-Type': 'application/javascript' });
-      res.end(data);
-    });
-    return;
-  }
+const loadFileError = (errorCode, error, res) => {
+  res.writeHead(errorCode, { 'Content-type': 'text/html' });
+  res.end(`<html><h1>Could not load file: ${error}</h1></html>`);
+};
 
-  fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
-    if (err) {
-      res.writeHead(500, { 'Content-type': 'text/html' });
-      res.end(`<html><h1>Could not load html file: ${err}</h1></html>`);
-      return;
-    }
-    res.writeHead(200, { 'Content-Type': 'text/html' });
+const loadFile = (res, filepath, fileFormat) => {
+  fs.readFile(path.join(__dirname, filepath), (error, data) => {
+    if (error) return loadFileError(500, error, res);
+    res.writeHead(200, { 'Content-Type': fileFormat });
     res.end(data);
   });
-  return;
+};
+
+const server = http.createServer((req, res) => {
+  switch (req.url) {
+    case '/':
+      return loadFile(res, 'index.html', 'text/html');
+    case '/favicon.ico':
+      return;
+    default:
+      return loadFile(res, req.url, 'application/javascript')
+  }
 });
 
 server.listen(port, host, () => {
