@@ -32,10 +32,19 @@
       width: 100%;
     }
 
-    .rgbText {
-      background-color: rgba(0, 0, 0, 0.3);
+    .textContainer {
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.4);
       padding: 20px;
       border-radius: 30px;
+    }
+
+    .rgbText {
+      border-width: 5px;
+      border-color: aqua;
     }
 
     .section:nth-child(1) { background-color: red; }
@@ -48,19 +57,34 @@
 <body style="margin: 0;">
   <div class="container" id="sectionsParent">
     <div class="section">
-      <p id="text1" class="rgbText">rgb(255, 0, 0)</p>
+      <div class="textContainer">
+        <p id="rgb1" class="rgbText">rgb(255, 0, 0)</p>
+        <p id="hex1" class="rgbText">#ff0000</p>
+      </div>
     </div>
     <div class="section">
-      <p id="text2" class="rgbText">rgb(255, 165, 0)</p>
+      <div class="textContainer">
+        <p id="rgb2" class="rgbText">rgb(255, 165, 0)</p>
+        <p id="hex2" class="rgbText">#ffa500</p>
+      </div>
     </div>
     <div class="section">
-      <p id="text3" class="rgbText">rgb(255, 255, 0)</p>
+      <div class="textContainer">
+        <p id="rgb3" class="rgbText">rgb(255, 255, 0)</p>
+        <p id="hex3" class="rgbText">#ffff00</p>
+      </div>
     </div>
     <div class="section">
-      <p id="text4" class="rgbText">rgb(0, 128, 0)</p>
+      <div class="textContainer">
+        <p id="rgb4" class="rgbText">rgb(0, 128, 0)</p>
+        <p id="hex4" class="rgbText">#008000</p>
+      </div>
     </div>
     <div class="section">
-      <p id="text5" class="rgbText">rgb(0, 0, 255)</p>
+      <div class="textContainer">
+        <p id="rgb5" class="rgbText">rgb(0, 0, 255)</p>
+        <p id="hex5" class="rgbText">#0000ff</p>
+      </div>
     </div>
   </div>
   <button class="button" onclick="getNewPalette();">Generate new palette</button>
