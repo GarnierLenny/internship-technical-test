@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { styles } from './App.styles';
 import { BiCopy } from 'react-icons/bi';
+import { ImLock, ImUnlocked } from "react-icons/im";
 import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     '0, 128, 0',
     '0, 0, 255',
   ]);
+  const [locked, setLocked] = useState<boolean[]>(Array(5).fill(false));
 
   const componentToHex = (c: number) => {
     var hex = c.toString(16);
@@ -45,6 +47,15 @@ function App() {
     toast.success('Copied to clipboard!');
   };
 
+  const toggleLock = (index: number) => {
+    setLocked((oldLocks) => {
+      const newLocks = [...locked];
+
+      newLocks[index] = !newLocks[index];
+      return newLocks;
+    });
+  };
+
   return (
     <div style={{display: 'flex'}}>
       <Toaster />
@@ -55,12 +66,15 @@ function App() {
           <div style={{...styles.textContainer, flexDirection: "column"}}>
             <div style={styles.subTextContainer}>
               <p>{`rgb(${bgColor})`}</p>
-              <BiCopy onClick={() => copyToClipboard(`rgb(${bgColor})`)} style={{cursor: 'pointer'}} size={25} />
+              <BiCopy onClick={() => copyToClipboard(`rgb(${bgColor})`)} style={styles.icon} size={25} />
             </div>
             <div style={styles.subTextContainer}>
               <p>{hexColor}</p>
-              <BiCopy onClick={() => copyToClipboard(hexColor)} style={{cursor: 'pointer'}} size={25} />
+              <BiCopy onClick={() => copyToClipboard(hexColor)} style={styles.icon} size={25} />
             </div>
+            {locked[index] ?
+              <ImLock onClick={() => toggleLock(index)} style={styles.icon} size={25} /> :
+              <ImUnlocked onClick={() => toggleLock(index)} style={styles.icon} size={25} />}
           </div>
         </div>
       )})}

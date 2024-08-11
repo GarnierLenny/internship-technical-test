@@ -32,4 +32,7 @@ export const styles = {
     justifyContent: 'space-between',
     width: '100%'
   },
+  icon: {
+    cursor: 'pointer',
+  },
 };
