@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { styles } from './App.styles';
+import { BiCopy } from 'react-icons/bi';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   const [colors, setColors] = useState<string[]>([
@@ -37,14 +39,28 @@ function App() {
     return data;
   };
 
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success('Copied to clipboard!');
+  };
+
   return (
     <div style={{display: 'flex'}}>
+      <Toaster />
       {colors.map((bgColor, index) => {
+        const hexColor: string = rgbToHex(bgColor.split(',').map(character => parseInt(character)));
         return (
         <div style={{...styles.section, backgroundColor: `rgb(${bgColor})`}} key={index}>
           <div style={{...styles.textContainer, flexDirection: "column"}}>
-            <p>{`rgb(${bgColor})`}</p>
-            <p>{rgbToHex(bgColor.split(',').map(character => parseInt(character)))}</p>
+            <div style={styles.subTextContainer}>
+              <p>{`rgb(${bgColor})`}</p>
+              <BiCopy onClick={() => copyToClipboard(`rgb(${bgColor})`)} style={{cursor: 'pointer'}} size={25} />
+            </div>
+            <div style={styles.subTextContainer}>
+              <p>{hexColor}</p>
+              <BiCopy onClick={() => copyToClipboard(hexColor)} style={{cursor: 'pointer'}} size={25} />
+            </div>
           </div>
         </div>
       )})}

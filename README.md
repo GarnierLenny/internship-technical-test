@@ -47,6 +47,6 @@ This part is quite straightforward since this time I don't have to code the host
 
 The main point here is adding new features, here's what I have in mind:
 
-- User is able to _lock_ a section, meaning that further generating a palette with affect exclusively not locked section
 - Add a _copy to clipboard_ button next to the rgb and hex value
+- User is able to _lock_ a section, meaning that further generating a palette with affect exclusively not locked section
 - User will be able to choose a _palette theme_ provided by the [Colormind API](http://colormind.io/api-access/)
