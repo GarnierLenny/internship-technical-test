@@ -14,8 +14,16 @@ export const styles = {
     backgroundColor: "rgb(0, 0, 0, 0.4)",
     padding: "20px",
     borderRadius: "30px",
-    width: "55%",
+    width: "65%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  button: {
+    bottom: 0,
+    width: '100%',
+    paddingBottom: '15px',
+    paddingTop: '15px',
+    fontWeight: '600',
+    fontSize: 17,
   },
 };
