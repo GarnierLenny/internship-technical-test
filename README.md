@@ -26,3 +26,17 @@ My file structure will be:
   - **server.js** `Holds the server code to host the application`
   - **static/**
     - **script.js** `Holds the color palette generator code`
+
+For this part use `node server.js` to run the application
+
+### **Final result**
+
+Here's a screenshot of the final result:
+
+![vanilla_final](./images/vanilla_final.png)
+
+### **Thoughts**:
+
+- I had some trouble loading static files on the server, at first I did not quite understood at first why it tried to load `script.js` with in the `text/html` as format
+- I struggled a bit in converting rgb to hexadecimal format, for this precise function I assisted myself with [StackOverflow](https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb)
+- I let on purpose a margin of progression in order to add additional features in the next sections
