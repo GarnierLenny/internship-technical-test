@@ -7,7 +7,9 @@ async function getNewPalette() {
   const parent = document.getElementById('sectionsParent');
 
   for (let i = 0; i < parent.children.length; i++) {
-    parent.children[i].style.backgroundColor = `rgb(${data.result[i][0]}, ${data.result[i][1]}, ${data.result[i][2]})`;
+    const currentColor = `rgb(${data.result[i][0]}, ${data.result[i][1]}, ${data.result[i][2]})`;
+    parent.children[i].style.backgroundColor = currentColor;
+    document.getElementById(`text${i + 1}`).textContent = currentColor;
   }
   return data;
 };
