@@ -5,9 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vanilla color palette generator</title>
   <script src="./static/script.js"></script>
+  <style>
+    .container {
+      display: flex;
+      background-color: aqua;
+      box-sizing: border-box;
+    }
+
+    .section {
+      width: 20%;
+      height: 100vh;
+    }
+
+    .button {
+      position: absolute;
+      bottom: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 100%;
+    }
+
+    .section:nth-child(1) { background-color: red; }
+    .section:nth-child(2) { background-color: orange; }
+    .section:nth-child(3) { background-color: yellow; }
+    .section:nth-child(4) { background-color: green; }
+    .section:nth-child(5) { background-color: blue; }
+  </style>
 </head>
-<body>
-  <h1>Vanilla color palette generator</h1>
-  <button onclick="sayHello();">Say hello in console</button>
+<body style="margin: 0;">
+  <div class="container" id="sectionsParent">
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+  </div>
+  <button class="button" onclick="getNewPalette();">Get new palette</button>
 </body>
 </html>
