@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import Sections from "./sections.component";
+import Sections from "../components/sections.component";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
