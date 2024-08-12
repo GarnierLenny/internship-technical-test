@@ -69,7 +69,7 @@ function Sections({colorsState, lockState}: SectionsType) {
     setPickerShowed((oldPickers) => {
       const newPickers = [...oldPickers];
 
-      pickerShowed[index] = !pickerShowed[index];
+      newPickers[index] = !newPickers[index];
       return newPickers;
     });
   };
@@ -97,10 +97,10 @@ function Sections({colorsState, lockState}: SectionsType) {
               }
               <FaArrowRight onClick={() => moveColor(colorsState.colors.length - 1, index, 1)} color={index === colorsState.colors.length - 1 ? "#999" : "#fff"} size={25} />
             </div>
-            <button onClick={() => togglePicker(index)} className="font-bold self-center cursor-pointer w-full">{pickerShowed[index] ? 'Hide picker' : 'Show picker'}</button>
+            <button onClick={() => togglePicker(index)} className="font-bold self-center cursor-pointer w-full">{pickerShowed[index] === true ? 'Hide picker' : 'Show picker'}</button>
           </div>
           {
-            pickerShowed[index] &&
+            pickerShowed[index] === true &&
             <div className="popover self-center">
               <HexColorPicker color={rgbToHex(colorsState.colors[index].split(',').map(elem => parseInt(elem)))} onChange={(color) => {setPickerColor(index, color)}} />
             </div>
