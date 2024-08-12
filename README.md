@@ -90,4 +90,4 @@ Here's a screenshot of the part 3 result:
 ![lock-1](./images/lock-1.png)
 ![lock-2](./images/lock-2.png)
 
-The app is available at [this link](internship-technical-test.vercel.app)
+The app is available at [this link](https://internship-technical-test.vercel.app/)
