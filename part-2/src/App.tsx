@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styles } from './App.styles';
 import { BiCopy } from 'react-icons/bi';
 import { ImLock, ImUnlocked } from "react-icons/im";
 import toast, { Toaster } from 'react-hot-toast';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 function App() {
   const [colors, setColors] = useState<string[]>([
@@ -12,7 +14,22 @@ function App() {
     '0, 128, 0',
     '0, 0, 255',
   ]);
+  const defaultModel: string = 'default';
   const [locked, setLocked] = useState<boolean[]>(Array(5).fill(false));
+  const [availableModels, setAvailableModels] = useState<string[]>([defaultModel]);
+  const [currentModel, setCurrentModel] = useState<string>(defaultModel);
+
+  useEffect(() => {
+    const getModels = async () => {
+      const data = await fetch('http://colormind.io/list/')
+        .then(async res => await res.json())
+        .catch(err => err);
+      setAvailableModels(data.result);
+      console.log(data.result);
+    };
+
+    getModels();
+  }, []);
 
   const componentToHex = (c: number) => {
     var hex = c.toString(16);
@@ -26,13 +43,12 @@ function App() {
     const data = await fetch('http://colormind.io/api/', {
       method: 'POST',
       body: JSON.stringify({
-        model: "default",
+        model: currentModel,
         input: colors.map((color, index) => locked[index] ? color.split(',').map(value => parseInt(value)) : "N"),
       }),
     })
     .then(async (data) => await data.json());
 
-    console.log(colors.map((color, index) => locked[index] ? color.split(',').map(value => parseInt(value)) : "N"));
     for (let i = 0; i < 5; i++) {
       setColors((oldColors => {
         const currentColor = `${data.result[i][0]}, ${data.result[i][1]}, ${data.result[i][2]}`;
@@ -44,7 +60,6 @@ function App() {
     }
     return data;
   };
-
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -83,6 +98,9 @@ function App() {
         </div>
       )})}
       <button onClick={getNewPalette} style={{...styles.button, position: 'absolute'}}>Generate new palette</button>
+      <div style={{right: 0, width: '17%', fontWeight: '600', position: 'absolute', margin: 20}}>
+        <Dropdown options={availableModels} onChange={(item) => {setCurrentModel(item.value)}} value={currentModel} placeholder="Select an option" />
+      </div>
     </div>
   );
 }
