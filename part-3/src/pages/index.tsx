@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import Sections from "../components/sections.component";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import { showDeactivateSecureConnection } from "@/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,7 @@ export default function Home() {
       const data = await fetch('http://colormind.io/list/')
         .then(async res => await res.json())
         .catch(err => undefined);
-      if (data === undefined) return;
+      if (data === undefined) return showDeactivateSecureConnection();
       setAvailableModels(data.result);
     };
     getModels();
@@ -57,7 +58,8 @@ export default function Home() {
       }),
     })
     .then(async (data) => await data.json())
-    .catch(err => err);
+    .catch(err => undefined);
+    if (data === undefined) return showDeactivateSecureConnection();
 
     for (let i = 0; i < 5; i++) {
       setColors((oldColors => {
