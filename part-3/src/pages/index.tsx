@@ -21,6 +21,12 @@ export default function Home() {
   const [currentModel, setCurrentModel] = useState<string>(defaultModel);
 
   useEffect(() => {
+    const getStoredColors = () => {
+      let storedColors: string[] | undefined = localStorage.getItem('storedColors')?.replace('[', '').replace(']', '').replaceAll('"', '').split(',');
+
+      if (storedColors !== undefined) setColors(storedColors?.map(item => item.replaceAll('.', ',')));
+    };
+
     const getModels = async () => {
       const data = await fetch('http://colormind.io/list/')
         .then(async res => await res.json())
@@ -28,7 +34,18 @@ export default function Home() {
       setAvailableModels(data.result);
     };
     getModels();
+    getStoredColors();
   }, []);
+
+  useEffect(() => {
+    const storeColors = () => {
+      if (localStorage.getItem('storedColors') && (colors[0] === '255, 0, 0' && colors[1] === '255, 165, 0')) return;
+      console.log('Storing...', JSON.stringify(colors.map(color => color.replaceAll(',', '.'))));
+      localStorage.setItem('storedColors', JSON.stringify(colors.map(color => color.replaceAll(',', '.'))));
+    };
+
+    storeColors();
+  }, [colors]);
 
   const getNewPalette = async () => {
     const data = await fetch('http://colormind.io/api/', {
