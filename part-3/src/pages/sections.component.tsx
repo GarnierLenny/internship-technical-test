@@ -14,7 +14,7 @@ function Sections({colors, lock}: {colors: string[], lock: {locked: boolean[], s
   };
 
   return (
-    <div className="flex flex-row flex-grow">
+    <div className="grid grid-cols-5">
       {colors.map((bgColor, index) => {
         const hexColor: string = rgbToHex(bgColor.split(',').map(character => parseInt(character)));
         return (
