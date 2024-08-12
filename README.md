@@ -27,10 +27,9 @@ My file structure will be:
   - **static/**
     - **script.js** `Holds the color palette generator code`
 
-For this part use `node server.js` to run the application
-
 ### **Part 1 result**
 
+For this part use `node server.js` to run the application.
 Here's a screenshot of the part 1 result:
 
 ![vanilla_final](./images/part-1_final.png)
@@ -53,6 +52,7 @@ The main point here is adding new features, here's what I have in mind:
 
 ### **Part 2 result**
 
+For this part use `npm start` to run the application.
 Here's a screenshot of the part 2 result:
 
 ![react_final](./images/part-2_final.png)
@@ -61,4 +61,16 @@ Here's a screenshot of the part 2 result:
 
 - This part was more straightforward than the first part since I didn't have do take care of the hosting of the app
 - Creating and styling components was much easier
-  \_ I once again let a margin of omprovement for the last part
+- I once again let a margin of omprovement for the last part
+
+# Part 3: NextJS
+
+This is the last part of this project, the final step consists of adding [NextJs](https://nextjs.org/) to the step-2 result. I also have to use [TailwindCSS](https://tailwindcss.com/) instead of JSX styling.
+
+The final result will be hosted on Vercel, to make its access easier I plan on hosting temporarily on a custom endpoint of my [portfolio website](https://lennygarnier.com).
+
+Here are the features that I want to add in this part:
+
+- User will be able to change the section order
+- User will be able to change the color of a section via a color picker placed on each section
+- The current palette will be saved and thus will remain after refreshing or quitting the web application, I will be using react's `localStorage` hook to perform this
