@@ -73,6 +73,11 @@ export default function Home() {
     return data;
   };
 
+  const changeModel = (item: string) => {
+    setCurrentModel(item);
+    getNewPalette();
+  }
+
   return (
     <main
       className={`flex min-h-screen flex-col ${inter.className}`}
@@ -81,7 +86,7 @@ export default function Home() {
       <Sections lockState={{locked, setLocked}} colorsState={{colors, setColors}} />
       <button className="absolute bottom-0 w-screen py-4 bg-blue-700 hover:bg-blue-900" onClick={getNewPalette}>Generate new palette</button>
       <div className="absolute right-0 top-0 m-5 w-1/6">
-        <Dropdown options={availableModels} onChange={(item) => {setCurrentModel(item.value)}} value={currentModel} placeholder="Select an option" />
+        <Dropdown options={availableModels} onChange={(item) => {changeModel(item.value)}} value={currentModel} placeholder="Select an option" />
       </div>
     </main>
   );
