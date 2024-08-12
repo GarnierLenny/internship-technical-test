@@ -30,7 +30,8 @@ export default function Home() {
     const getModels = async () => {
       const data = await fetch('http://colormind.io/list/')
         .then(async res => await res.json())
-        .catch(err => err);
+        .catch(err => undefined);
+      if (data === undefined) return;
       setAvailableModels(data.result);
     };
     getModels();

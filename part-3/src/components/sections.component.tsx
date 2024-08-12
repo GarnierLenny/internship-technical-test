@@ -97,7 +97,7 @@ function Sections({colorsState, lockState}: SectionsType) {
               }
               <FaArrowRight onClick={() => moveColor(colorsState.colors.length - 1, index, 1)} color={index === colorsState.colors.length - 1 ? "#999" : "#fff"} size={25} />
             </div>
-            <p onClick={() => togglePicker(index)} className="font-bold self-center cursor-pointer">{pickerShowed[index] ? 'Hide picker' : 'Show picker'}</p>
+            <button onClick={() => togglePicker(index)} className="font-bold self-center cursor-pointer w-full">{pickerShowed[index] ? 'Hide picker' : 'Show picker'}</button>
           </div>
           {
             pickerShowed[index] &&
