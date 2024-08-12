@@ -29,11 +29,11 @@ My file structure will be:
 
 For this part use `node server.js` to run the application
 
-### **Final result**
+### **Part 1 result**
 
-Here's a screenshot of the final result:
+Here's a screenshot of the part 1 result:
 
-![vanilla_final](./images/vanilla_final.png)
+![vanilla_final](./images/part-1_final.png)
 
 ### **Thoughts**:
 
@@ -50,3 +50,15 @@ The main point here is adding new features, here's what I have in mind:
 - User is able to _lock_ a section, meaning that further, generating a palette with affect exclusively not locked section, note that locking a color doesn't prevent it from being totally unchanged, locking a color will make the generator try to keep more or less the targetted color as it is
 - Add a _copy to clipboard_ button next to the rgb and hex value
 - User will be able to choose a _palette theme_ provided by the [Colormind API](http://colormind.io/api-access/)
+
+### **Part 2 result**
+
+Here's a screenshot of the part 2 result:
+
+![react_final](./images/part-2_final.png)
+
+### **Thoughts**:
+
+- This part was more straightforward than the first part since I didn't have do take care of the hosting of the app
+- Creating and styling components was much easier
+  \_ I once again let a margin of omprovement for the last part
