@@ -1,11 +1,23 @@
 import { rgbToHex, copyToClipboard } from "@/utils";
 import React from "react";
 import { BiCopy } from "react-icons/bi";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { ImLock, ImUnlocked } from "react-icons/im";
 
-function Sections({colors, lock}: {colors: string[], lock: {locked: boolean[], setLocked: React.Dispatch<React.SetStateAction<boolean[]>>}}) {
+type SectionsType = {
+  colorsState: {
+    colors: string[],
+    setColors: React.Dispatch<React.SetStateAction<string[]>>
+  },
+  lockState: {
+    locked: boolean[],
+    setLocked: React.Dispatch<React.SetStateAction<boolean[]>>
+  }
+};
+
+function Sections({colorsState, lockState}: SectionsType) {
   const toggleLock = (index: number) => {
-    lock.setLocked((oldLocks) => {
+    lockState.setLocked((oldLocks) => {
       const newLocks = [...oldLocks];
 
       newLocks[index] = !newLocks[index];
@@ -13,9 +25,29 @@ function Sections({colors, lock}: {colors: string[], lock: {locked: boolean[], s
     });
   };
 
+  const moveColor = (disabledIndex: number, index: number, offset: number) => {
+    if (index === disabledIndex) return;
+    colorsState.setColors((oldColors) => {
+      const newColors = [...oldColors];
+
+      const tmp: string = newColors[index];
+      newColors[index] = newColors[index + offset];
+      newColors[index + offset] = tmp;
+      return newColors;
+    });
+    lockState.setLocked((oldLocks) => {
+      const newLocks = [...oldLocks];
+
+      const tmp: boolean = newLocks[index];
+      newLocks[index] = newLocks[index + offset];
+      newLocks[index + offset] = tmp;
+      return newLocks;
+    });
+  };
+
   return (
     <div className="grid grid-cols-5">
-      {colors.map((bgColor, index) => {
+      {colorsState.colors.map((bgColor, index) => {
         const hexColor: string = rgbToHex(bgColor.split(',').map(character => parseInt(character)));
         return (
         <div className="grow flex justify-center h-screen gap-5" style={{backgroundColor: `rgb(${bgColor})`}} key={index}>
@@ -28,10 +60,13 @@ function Sections({colors, lock}: {colors: string[], lock: {locked: boolean[], s
               <p>{hexColor}</p>
               <BiCopy className="cursor-pointer" onClick={() => copyToClipboard(hexColor)} size={25} />
             </div>
-            <div className="place-self-center cursor-pointer">
-              {lock.locked[index] ?
+            <div className="flex place-self-center cursor-pointer flex-row justify-around w-full">
+              <FaArrowLeft onClick={() => moveColor(0, index, -1)} color={index === 0 ? "#999" : "#fff"} size={25} />
+              {lockState.locked[index] ?
                 <ImLock onClick={() => toggleLock(index)} size={25} /> :
-                <ImUnlocked onClick={() => toggleLock(index)} size={25} />}
+                <ImUnlocked onClick={() => toggleLock(index)} size={25} />
+              }
+              <FaArrowRight onClick={() => moveColor(colorsState.colors.length - 1, index, 1)} color={index === colorsState.colors.length - 1 ? "#999" : "#fff"} size={25} />
             </div>
           </div>
         </div>

@@ -27,7 +27,6 @@ export default function Home() {
         .catch(err => err);
       setAvailableModels(data.result);
     };
-
     getModels();
   }, []);
 
@@ -54,13 +53,12 @@ export default function Home() {
     return data;
   };
 
-
   return (
     <main
       className={`flex min-h-screen flex-col ${inter.className}`}
     >
       <Toaster />
-      <Sections lock={{locked, setLocked}} colors={colors} />
+      <Sections lockState={{locked, setLocked}} colorsState={{colors, setColors}} />
       <button className="absolute bottom-0 w-screen py-4 bg-blue-700 hover:bg-blue-900" onClick={getNewPalette}>Generate new palette</button>
       <div className="absolute right-0 top-0 m-5 w-1/6">
         <Dropdown options={availableModels} onChange={(item) => {setCurrentModel(item.value)}} value={currentModel} placeholder="Select an option" />
