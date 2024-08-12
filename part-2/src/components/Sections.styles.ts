@@ -18,14 +18,6 @@ export const styles = {
     alignItems: "center",
     justifyContent: "center",
   },
-  button: {
-    bottom: 0,
-    width: '100%',
-    paddingBottom: '15px',
-    paddingTop: '15px',
-    fontWeight: '600',
-    fontSize: 17,
-  },
   subTextContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -34,5 +26,9 @@ export const styles = {
   },
   icon: {
     cursor: 'pointer',
+  },
+  sectionsContainer: {
+    display: 'flex',
+    flex: 1
   },
 };
