@@ -74,3 +74,20 @@ Here are the features that I want to add in this part:
 - User will be able to change the section order
 - User will be able to change the color of a section via a color picker placed on each section
 - The current palette will be saved and thus will remain after refreshing or quitting the web application, I will be using react's `localStorage` hook to perform this
+
+### **Part 2 result**
+
+For this part use `npm dev` to run the application.
+Here's a screenshot of the part 3 result:
+
+![next_final](./images/part-3_final.png)
+
+### **Thoughts**:
+
+- This was the quickest part since I could reeuse my components from part-2
+- I encountered a difficulty at then end: I chose this API because it didn't require an API key, meaning anyone could use the final product without being afraid of running out of available calls, the issue with this is that APIs that do not require an API key are usually encrypted as **http** and not **https**. Vercel-deployed app do not authorize calls to non-secure endpoints. To fix that you need to press the lock in your navbar and deactivate the secure connection as such:
+
+![lock-1](./images/lock-1.png)
+![lock-2](./images/lock-2.png)
+
+The app is available at [this link](internship-technical-test.vercel.app)
